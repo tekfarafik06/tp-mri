@@ -22,16 +22,21 @@ public class Main {
                 System.out.println(e);
 
             }
+            System.out.println("***************** Quelques mesures de bases ******************");
             System.out.println("Le nombre de noeuds:" + graphe1.getNodeCount());
             System.out.println("Le nombre de liens : " + graphe1.getEdgeCount());
             System.out.println("Le degré moyen :" + averageDegree(graphe1));
             System.out.println("Le coefficient de clustering:" + averageClusteringCoefficient(graphe1));
             System.out.println("Le coefficient de clustering pour un réseau aléatoire de la même taille et du même degré moyen :" + averageDegree(graphe1) / graphe1.getNodeCount());
             /* la méthode de toolkit "isconnected" nous permet de  savoir si le graphe est connexe ou non*/
-
+            System.out.println("****************** vérifier la connexité du réseau aléatoire ************** ");
             if (isConnected(graphe1))
                 System.out.println("Le graphe est connexe");
             else
                 System.out.println("Le graphe n'est pas connexe");
+            System.out.println("**************** Vérifier la connexité du réseau aléatoire de la meme taille et degré moyen *********");
+            System.out.println(" La connexité d'un graphe aléatoire avec la même taille et degré moyen :  " + (averageDegree(graphe1)> Math.log(graphe1.getNodeCount())));
+            System.out.println(" Un réseau aléatoire avec la même taille, devient connexe à partir du degré moyen : " + Math.log(graphe1.getNodeCount()));
+
         }
     }

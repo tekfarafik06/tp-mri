@@ -23,6 +23,7 @@ public class Main {
 
             }
             System.out.println("Le nombre de noeuds:" + graphe1.getNodeCount());
+            System.out.println("Le nombre de liens : " + graphe1.getEdgeCount());
             System.out.println("Le degré moyen :" + averageDegree(graphe1));
             System.out.println("Le coefficient de clustering:" + averageClusteringCoefficient(graphe1));
             System.out.println("Le coefficient de clustering pour un réseau aléatoire de la même taille et du même degré moyen :" + averageDegree(graphe1) / graphe1.getNodeCount());

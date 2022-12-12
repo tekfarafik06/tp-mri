@@ -25,5 +25,15 @@ Dans ce cas un réseau aléatoire *G(N,p)* contient *N* noeuds et la probabilit�
 Ce résultat a été obtenu grâce a la méthode *averageDegree(graph) / graph.getNodeCount()* </br>
 et on a obtenu les résultats comme ce ci
 
-![](/home/c2i/Images/Capture d’écran du 2022-12-12 16-35-13.png)
+![](/home/c2i/Images/Capture d’écran du 2022-12-12 16-43-27.png)
 
+# La connexité 
+## 1- Un réseau connexe : 
+Un réseau connexe c'est un réseau dont tous les noeuds sont connectés entres eux et pour la vérifier sur notre graphe j'ai utiliser la fonction de *isConnected()* qui renvoit vrai si le réseau est connexe si non faux. et après avoir utiliser la méthode *isOriented()* le réseau DBLP est connexe.
+## 2- réseau aléatoire de la même taille et degré moyen sera-t-il connexe: 
+On sait que le réseau aléatoire de la même taille et degré moyen soit connexe si la notion du degré est supérieur au nombre de noeuds du graphe est vérifie 
+</br> Soit `〈k〉> lnN(p>lnN/N)` </br>  
+après appliquer ça on déduit que même si dans un réseau aléatoire malgré la même taille et degré moyen  
+ce dernier n'est pas connexe.
+## 3- À partir de quel degré moyen un réseau aléatoire avec cette taille devient connexe :
+Un réseau aléatoire avec cette même taille devient connexe si le degré moyen est supérieur à  **12.666909386951092** </br>

@@ -27,5 +27,11 @@ public class Main {
             System.out.println("Le degré moyen :" + averageDegree(graphe1));
             System.out.println("Le coefficient de clustering:" + averageClusteringCoefficient(graphe1));
             System.out.println("Le coefficient de clustering pour un réseau aléatoire de la même taille et du même degré moyen :" + averageDegree(graphe1) / graphe1.getNodeCount());
+            /* la méthode de toolkit "isconnected" nous permet de  savoir si le graphe est connexe ou non*/
+
+            if (isConnected(graphe1))
+                System.out.println("Le graphe est connexe");
+            else
+                System.out.println("Le graphe n'est pas connexe");
         }
     }

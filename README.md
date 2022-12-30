@@ -37,3 +37,7 @@ après appliquer ça on déduit que même si dans un réseau aléatoire malgré 
 ce dernier n'est pas connexe.
 ## 3- À partir de quel degré moyen un réseau aléatoire avec cette taille devient connexe :
 Un réseau aléatoire avec cette même taille devient connexe si le degré moyen est supérieur à  **12.666909386951092** </br>
+
+
+![](/home/c2i/Images/7.png)
+

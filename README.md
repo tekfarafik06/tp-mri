@@ -25,7 +25,7 @@ Dans ce cas un réseau aléatoire *G(N,p)* contient *N* noeuds et la probabilit�
 Ce résultat a été obtenu grâce a la méthode *averageDegree(graph) / graph.getNodeCount()* </br>
 et on a obtenu les résultats comme ce ci
 
-![](/home/c2i/Images/Capture d’écran du 2022-12-12 16-43-27.png)
+![](./Images/Capture d’écran du 2022-12-12 16-43-27.png)
 
 # La connexité 
 ## 1- Un réseau connexe : 
@@ -39,5 +39,5 @@ ce dernier n'est pas connexe.
 Un réseau aléatoire avec cette même taille devient connexe si le degré moyen est supérieur à  **12.666909386951092** </br>
 
 
-![](/home/c2i/Images/7.png)
+![](./Images/7.png)
 

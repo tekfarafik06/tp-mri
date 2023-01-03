@@ -52,14 +52,19 @@ On commençant avec l'échelle linéaire puis l'échelle log log.
 
 ## Échelle linéaire :
 
-Pour le générer j'ai utilisé le script : `DistributionDegreEchelleLineaire.gnuplot`
+Pour le générer j'ai utilisé ce [script](Distribution/DistributionDegreEchelleLineaire.gnuplot)
 
-![](Distribution/distributionDegEchelleLin.png)
+![Distribution des degrés échelle linéaire](Distribution/distributionDegEchelleLin.png)
 
 ## Échelle log-log :
 
-Pour le générer j'ai utilisé le script : `sDistributionDegreEchelleLogLog.gnuplot`
+Pour le générer j'ai utilisé ce [Script](Distribution/DistributionDegreEchelleLogLog.gnuplot)
 
-![](Distribution/distributionDegEchelleLogLog.png)
+![Distribution des degrés échelle Log-Log](Distribution/distributionDegEchelleLogLog.png)
 
 En analysant le graphe on peut voir une ligne droite pendant plusieurs ordres de grandeur. Donc on déduit que la distribution de degré suit une loi de puissance.
+## La loi de puissance 
+Afin de générer la loi de puissance que suit cette distribution, on a utiliser le même principe, via l'outil Gnuplot nous avons obtenu grace au [script](Distribution/LoiDePuissance.gnuplot) le graphe suivant :
+
+![La Loi De Puissance](Distribution/LoiDePuissance.png)
+

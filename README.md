@@ -25,7 +25,7 @@ Dans ce cas un réseau aléatoire *G(N,p)* contient *N* noeuds et la probabilit�
 Ce résultat a été obtenu grâce a la méthode *averageDegree(graph) / graph.getNodeCount()* </br>
 et on a obtenu les résultats comme ce ci
 
-![](./Images/Capture d’écran du 2022-12-12 16-43-27.png)
+![](./Images/1.png)
 
 # La connexité 
 ## 1- Un réseau connexe : 
@@ -39,5 +39,27 @@ ce dernier n'est pas connexe.
 Un réseau aléatoire avec cette même taille devient connexe si le degré moyen est supérieur à  **12.666909386951092** </br>
 
 
-![](./Images/7.png)
+![](./Images/2.png)
 
+# La distribution des degrés :
+La distribution des degrés est la probabilité qu'un nœud choisi au hasard ait degré k.
+</br> Soit `P(k) = N(k)/N` </br>
+pour se faire j'ai fait appel à la fontion *Toolkit.degreeDistribution(notre graphe)* qui renvoit un tableau où chaque indice de cellule représente le degré, et la valeur de la cellule le nombre de noeud ayant ce degré, et puis j'ai stocké le résultat obtenu dans un tableau d'entiers degreProba[]
+et puis j'ai créé un fichier texte ou chaque ligne représente l'association de la probabilité qu'un noeud choisi au hasard ait degré `k` à son degré `k`.
+
+Alors à partir du fichier générer `distributionDegre.txt` contenant la distribution des degrés, on trace le graphe correspondant à la probabilité qu’un noeud choisi au hasard ait degré `k` en fonction de son degré `k`.
+On commençant avec l'échelle linéaire puis l'échelle log log.  
+
+## Échelle linéaire :
+
+Pour le générer j'ai utilisé le script : `DistributionDegreEchelleLineaire.gnuplot`
+
+![](Distribution/distributionDegEchelleLin.png)
+
+## Échelle log-log :
+
+Pour le générer j'ai utilisé le script : `sDistributionDegreEchelleLogLog.gnuplot`
+
+![](Distribution/distributionDegEchelleLogLog.png)
+
+En analysant le graphe on peut voir une ligne droite pendant plusieurs ordres de grandeur. Donc on déduit que la distribution de degré suit une loi de puissance.

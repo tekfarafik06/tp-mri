@@ -43,18 +43,20 @@ public class Main {
             System.out.println(" La connexité d'un graphe aléatoire avec la même taille et degré moyen :  " + (averageDegree(graphe1)> Math.log(graphe1.getNodeCount())));
             System.out.println(" Un réseau aléatoire avec la même taille, devient connexe à partir du degré moyen : " + Math.log(graphe1.getNodeCount()));
 
-
+            //calculer le degrés Distrubution
             //nombre de noeud du graphe
             int nbNoeud = graphe1.getNodeCount();
-            // stock dans un tableau d'entiers : où chaque indice de cellule représente le degré d'un noeud,
-            // et la valeur de la cellule le nombre de noeuds ayant ce degré
+            /* stocker dans un tableau d'entiers où chaque indice de cellule représente le degré d'un noeud et la valeur de la cellule le nombre de noeuds ayant ce degré
+            */
             int [] degreProba = Toolkit.degreeDistribution(graphe1);
-            // création d'un fichier pour le stock des résultats de la distribution des degrés
+
+            // création d'un fichier pour stocker les résultats de la distribution des degrés
             try {
                 PrintWriter fichier = new PrintWriter(new FileWriter("/home/c2i/Musique/tp-mri/Distribution/distributionDegre.txt"));
                 for (int i = 0; i < degreProba.length; i++) {
-                    // degreProba[i]/nbNoeud  : represente la probabilité  qu’un noeud choisi au hasard ait degré i
+
                     fichier.write(i + "   " + (double)degreProba[i]/nbNoeud);
+                    // degreProba[i]/nbNoeud : represente la probabilité  qu’un noeud choisi au hasard ait degré i
                     fichier.println();
                 }
                 fichier.close();

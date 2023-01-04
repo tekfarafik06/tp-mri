@@ -63,6 +63,12 @@ Pour le générer j'ai utilisé ce [Script](Distribution/DistributionDegreEchell
 ![Distribution des degrés échelle Log-Log](Distribution/distributionDegEchelleLogLog.png)
 
 En analysant le graphe on peut voir une ligne droite pendant plusieurs ordres de grandeur. Donc on déduit que la distribution de degré suit une loi de puissance.
+
+## La loi de poisson 
+Pour le générer j'ai utilisé ce [Script](Distribution/DistributionDePoisson.gnuplot)
+
+![Distribution de Poisson](Distribution/DistributionDePoisson.png)
+
 ## La loi de puissance 
 Afin de générer la loi de puissance que suit cette distribution, on a utiliser le même principe, via l'outil Gnuplot nous avons obtenu grace au [script](Distribution/LoiDePuissance.gnuplot) le graphe suivant :
 

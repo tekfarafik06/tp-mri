@@ -74,3 +74,26 @@ Afin de générer la loi de puissance que suit cette distribution, on a utiliser
 
 ![La Loi De Puissance](Distribution/LoiDePuissance.png)
 
+# La distance 
+La distance entre deux noeuds d'un graphe est la longueur d'un plus court chemin (la longueur d'un chemin est sa longueur en nombre d'arrêtes), entre ces deux noeuds. 
+Pour trouver la distance moyenne de notre échantillon de 1000 noeuds, elle prend 1000 noeuds du réseau au hasard
+puis on fait la somme de ses distances vers les autres noeuds du graphe.
+
+
+Et on obtient ce résultat : **6.7938152705941715**.
+
+Donc graçe à la distance moyenne on peut dire que l'hypothèse de six degrés de séparation est confirmé.
+
+Puisque la distance entre deux noeuds choisis au hasard est courte donc il s'agit d'un réseau "petit monde".
+
+Nous obtenons le résultat de la distance moyenne calculée pour 1000 noeuds choisis au hasard comme ceci : **6.700611818856679** .
+
+Les résultats obtenus sont stockés dans le fichier  [Distance](Distribution/Distance.txt) . </br>
+Ces résultats sont tracés via Gnuplot grâce à ce [script](Distribution/distributionDistances.gnuplot) . </br>
+
+Ce qui nous mène au graphe suivant
+
+![Distribution des distances ](Distribution/Distances.png)
+
+Dans la courbe obtenue on déduit que cette distribution suit une loi Binomiale car on observe que selon les données du sommet on peut remarquer qu'il s'agit de la même distance que partage plusieurs noeuds.
+ 

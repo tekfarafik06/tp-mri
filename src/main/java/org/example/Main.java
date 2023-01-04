@@ -92,6 +92,20 @@ public class Main {
             }
             double distMoy = distance / (a);
             System.out.println("La distance moyenne avec 1000 noeuds est : " + distMoy);
+            System.out.println("La distance moyenne dans un réseau aléatoire avec les mêmes caractéristiques est :" + Math.log(graphe1.getNodeCount()) / Math.log(averageDegree(graphe1)));
+            String filename = "Distribution/Distance.txt";
+            try {
+                String filepath = System.getProperty("user.dir") + File.separator + filename;
+                FileWriter dd = new FileWriter(filepath);
+                BufferedWriter fichier= new BufferedWriter(dd);
+                for (Integer i : distancesMap.keySet()) {
+                    fichier.write(String.format(Locale.US, "%6d%20.8f%n", i, (double) distancesMap.get(i) / a));
+                }
+                fichier.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
-}
+        }
 

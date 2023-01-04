@@ -50,13 +50,13 @@ et puis j'ai créé un fichier texte ou chaque ligne représente l'association d
 Alors à partir du fichier générer `distributionDegre.txt` contenant la distribution des degrés, on trace le graphe correspondant à la probabilité qu’un noeud choisi au hasard ait degré `k` en fonction de son degré `k`.
 On commençant avec l'échelle linéaire puis l'échelle log log.  
 
-## Échelle linéaire :
+## 1- Échelle linéaire :
 
 Pour le générer j'ai utilisé ce [script](Distribution/DistributionDegreEchelleLineaire.gnuplot)
 
 ![Distribution des degrés échelle linéaire](Distribution/distributionDegEchelleLin.png)
 
-## Échelle log-log :
+## 2- Échelle log-log :
 
 Pour le générer j'ai utilisé ce [Script](Distribution/DistributionDegreEchelleLogLog.gnuplot)
 
@@ -64,12 +64,12 @@ Pour le générer j'ai utilisé ce [Script](Distribution/DistributionDegreEchell
 
 En analysant le graphe on peut voir une ligne droite pendant plusieurs ordres de grandeur. Donc on déduit que la distribution de degré suit une loi de puissance.
 
-## La loi de poisson 
+## 3- La loi de poisson 
 Pour le générer j'ai utilisé ce [Script](Distribution/DistributionDePoisson.gnuplot)
 
 ![Distribution de Poisson](Distribution/DistributionDePoisson.png)
 
-## La loi de puissance 
+## 4- La loi de puissance 
 Afin de générer la loi de puissance que suit cette distribution, on a utiliser le même principe, via l'outil Gnuplot nous avons obtenu grace au [script](Distribution/LoiDePuissance.gnuplot) le graphe suivant :
 
 ![La Loi De Puissance](Distribution/LoiDePuissance.png)
@@ -96,4 +96,11 @@ Ce qui nous mène au graphe suivant
 ![Distribution des distances ](Distribution/Distances.png)
 
 Dans la courbe obtenue on déduit que cette distribution suit une loi Binomiale car on observe que selon les données du sommet on peut remarquer qu'il s'agit de la même distance que partage plusieurs noeuds.
- 
+# Générateurs de GraphStream 
+
+## 1- Générer un réseau aléatoire
+Pour générer le graphe en utilisant le générateur aléatoire de graphe et on reprend les meme mesures des questions précédentes.
+j'ai créé la méthode *genererGraphRandom(int nbNoeuds, int degreeMoyen)* qui prend deux paramétre le nombre de noeuds du graphe et le degré moyen.
+et on obtient les mesures suivantes :
+
+![Les mesures de graphes générer aléatoirement](Images/GrapheGenAlea.png)

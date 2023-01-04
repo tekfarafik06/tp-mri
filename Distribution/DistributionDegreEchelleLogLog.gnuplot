@@ -6,4 +6,4 @@ set logscale y 10
 set xlabel "k"
 set ylabel "p(k)"
 set key on inside center top
-plot"distributionDegre.txt" with linesp lt 1 pt 1 linecolor rgb 'red'
+plot"distributionDegre.txt" title 'DBLP' with linesp lt 1 pt 1 linecolor rgb 'red'

@@ -4,4 +4,4 @@ set output "distributionDegEchelleLin.png"
 set xlabel "k"
 set ylabel "p(k)"
 set key on inside center top
-plot"distributionDegre.txt" with lines lt 2 lw 3 linecolor rgb 'red'
+plot"distributionDegre.txt" title 'DBLP' with lines lt 2 lw 3 linecolor rgb 'red'

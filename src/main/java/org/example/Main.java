@@ -1,6 +1,7 @@
 package org.example;
 
 import org.graphstream.algorithm.Toolkit;
+import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.BreadthFirstIterator;
@@ -61,6 +62,46 @@ public class Main {
         //graphe2.display();
         return graphe2;
     }
+    // 6-2 Création d'un réseau avec la méthode d'attachement préférentiel (Barabasi-Albert) ayant la même taille que le réseau DBLP
+
+    public static void BarabasiAlbert(int NombreNoueds, int degreMoyen) {
+        Graph graphe3 = new SingleGraph("BarAlb");
+        Generator gen = new BarabasiAlbertGenerator(degreMoyen);
+
+        gen.addSink(graphe3);
+        gen.begin();
+        while (graphe3.getNodeCount() < NombreNoueds && gen.nextEvents()) ;
+        gen.end();
+        //Les mesures de base pour un graphe générer avec le générateur barbasi en utilisant les méthodes de la classe Toolkit
+        System.out.println("\n********* Les mesures de base pour un graphe générer avec le générateur Barbasi-Albert ******\n");
+        System.out.println("Le nombre de noeud du graphe generer avec le generateur Barbasi-Albert : " + graphe3.getNodeCount());
+        System.out.println("Le nombre de liens du graphe generer avec le generateur Barbasi-Albert : " + graphe3.getEdgeCount());
+        System.out.println("Le degré moyen du graphe generer avec le generateur Barbasi-Albert  :" +averageDegree(graphe3));
+        System.out.println("**** vérifier la connexité du réseau aléatoire générer avec le generateur Barbasi-Albert ****");
+        if (isConnected(graphe3))
+            System.out.println("Le graphe est connexe");
+        else
+            System.out.println("Le graphe n'est pas connexe");
+        System.out.println("Le coefficient de clustering du graphe généré avec le generateur Barbasi-Albert : " + averageClusteringCoefficient(graphe3));
+        // Distribution des degrés pour BAN
+        int n= graphe3.getNodeCount();
+        int [] ddBA = Toolkit.degreeDistribution(graphe3);
+        String filename = "Aleatoirement/DegreeDistGapheBarAlb.txt";
+        try {
+            String filepath = System.getProperty("user.dir") + File.separator + filename;
+            FileWriter fw = new FileWriter(filepath);
+            BufferedWriter fichier3 = new BufferedWriter(fw);
+            for (int i = 0; i < ddBA.length; i++) {
+                fichier3.write(String.format(Locale.US, "%6d%20.8f%n", i, (double)ddBA[i] / n));
+                //System.out.printf("%6d%20.8f%n",i, (double) ddBA[i]/n);
+            }
+            fichier3.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //graphe3.display();
+    }
+
     public static void main(String[] args) {
         System.setProperty("org.graphstream.ui", "swing");
         Graph graphe1 = new DefaultGraph("Graphe");
@@ -153,6 +194,7 @@ public class Main {
         }
         //reprendre les meme resultats(meme degre et meme nombre de noeud)
         Main.genererGraphRandom(317080,6);
+        Main.BarabasiAlbert(317080,6);
     }
 }
 

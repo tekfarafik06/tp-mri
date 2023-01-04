@@ -104,3 +104,11 @@ j'ai créé la méthode *genererGraphRandom(int nbNoeuds, int degreeMoyen)* qui 
 et on obtient les mesures suivantes :
 
 ![Les mesures de graphes générer aléatoirement](Images/GrapheGenAlea.png)
+
+## 2- Générer un réseau avec la méthode d'attachement préférentiel (Barabasi-Albert)
+Pour générer le graphe en utilisant le générateur avec la méthode d'attachement préférentiel (Barabasi-Albert) 
+j'ai créé la méthode *BarabasiAlbert()*.
+et on obtient les mesures suivantes :
+
+![Les mesures de graphes générer avec la méthode d'attachement préférentiel](Images/GrapheGenBA.png)
+

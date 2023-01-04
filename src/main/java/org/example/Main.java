@@ -1,14 +1,17 @@
 package org.example;
 
 import org.graphstream.algorithm.Toolkit;
+import org.graphstream.graph.BreadthFirstIterator;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.stream.file.FileSourceEdge;
 import static org.graphstream.algorithm.Toolkit.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 public class Main {
 
@@ -54,15 +57,19 @@ public class Main {
             try {
                 PrintWriter fichier = new PrintWriter(new FileWriter("/home/c2i/Musique/tp-mri/Distribution/distributionDegre.txt"));
                 for (int i = 0; i < degreProba.length; i++) {
-
-                    fichier.write(i + "   " + (double)degreProba[i]/nbNoeud);
-                    // degreProba[i]/nbNoeud : represente la probabilité  qu’un noeud choisi au hasard ait degré i
-                    fichier.println();
+                    if (degreProba[i] != 0) {
+                        fichier.write(String.format(Locale.US,"%6d%20.8f%n", i, (double) degreProba[i] / nbNoeud));
+                        // degreProba[i]/nbNoeud : represente la probabilité  qu’un noeud choisi au hasard ait degré i
+                        //fichier.println();
+                    }
                 }
                 fichier.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            System.out.println("\n*********** Calculer de la distance moyenne d'un réseau ***********");
+
         }
-        }
+}
 

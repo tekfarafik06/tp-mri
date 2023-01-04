@@ -69,7 +69,29 @@ public class Main {
             }
 
             System.out.println("\n*********** Calculer de la distance moyenne d'un réseau ***********");
-
+            // Calculer de la distance moyenne d'un réseau, en utilisant le parcours en largeur pour 1000 sommets choisis alearoirement :
+            List<Node> l = Toolkit.randomNodeSet(graphe1, 1000);
+            HashMap<Integer, Integer> distancesMap = new HashMap<Integer, Integer>();
+            double distance = 0;
+            int a = 0;
+            for (int i = 0; i < 1000; i++) {
+                BreadthFirstIterator  bf= new BreadthFirstIterator(l.get(i));
+                while (bf.hasNext()) {
+                    Node Noeud = bf.next();
+                    int key = bf.getDepthOf(Noeud);
+                    if (distancesMap.containsKey(key)) {
+                        int t = distancesMap.get(key);
+                        int value = 1 + t;
+                        distancesMap.put(key, value);
+                    } else {
+                        distancesMap.put(key, 1);
+                    }
+                    distance += bf.getDepthOf(bf.next());
+                    a++;
+                }
+            }
+            double distMoy = distance / (a);
+            System.out.println("La distance moyenne avec 1000 noeuds est : " + distMoy);
         }
 }
 

@@ -105,10 +105,32 @@ et on obtient les mesures suivantes :
 
 ![Les mesures de graphes générer aléatoirement](Images/GrapheGenAlea.png)
 
+Et avec les memes scripts qu'on a deja fait on va tracer la distribution des degrés en échelle linéaire puis en log-log et aussi la distribution de poisson et la loi de puissance.
+Et on obtient ces résultats :
+
+![](DistributionGrapheAlea/distributionDegEchelleLin.png)
+![](DistributionGrapheAlea/distributionDegEchelleLogLog.png)
+![](DistributionGrapheAlea/PuissanceEtPoisson.png)
+
 ## 2- Générer un réseau avec la méthode d'attachement préférentiel (Barabasi-Albert)
 Pour générer le graphe en utilisant le générateur avec la méthode d'attachement préférentiel (Barabasi-Albert) 
-j'ai créé la méthode *BarabasiAlbert()*.
+j'ai créé la méthode **BarabasiAlbert(int nbNoeuds, int degreeMoyen)** qui prend deux paramétre le nombre de noeuds du graphe et le degré moyen.
 et on obtient les mesures suivantes :
 
 ![Les mesures de graphes générer avec la méthode d'attachement préférentiel](Images/GrapheGenBA.png)
+
+Et avec les memes scripts qu'on a deja fait on va tracer la distribution des degrés en échelle linéaire puis en log-log et aussi la distribution de poisson et la loi de puissance.
+Et on obtient ces résultats :
+
+![](DistributionBA/distributionDegEchelleLin.png)
+![](DistributionBA/distributionDegEchelleLogLog.png)
+![](DistributionBA/PuissanceEtPoisson.png)
+
+En effet, Les résultats expérimentaux correspondent aux prédictions théoriques.
+
+## 3- Comparaison
+D'après les résultats on voit que le graphe préférentiel à plus de liens, et on voit que le graphe aléatoire possède le plus faible coefficient de clustering.
+De plus le graphe préférentiel intègre deux concepts généraux importants : la croissance(le nombre de noeuds dans le réseau augmente avec le temps) et
+l'attachement préférentiel (plus un noeud est connecté, plus il est susceptible de recevoir de nouveaux liens). Et ces deux concepts existent dans les réseaux réels.
+
 

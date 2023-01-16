@@ -46,7 +46,7 @@ public class Main {
         int n = graphe2.getNodeCount();
         int[] dd = Toolkit.degreeDistribution(graphe2);
         //Stocker les données dans un fichier.txt
-        String filename = "Aleatoirement/DegreeDistGrapheAlea.txt";
+        String filename = "DistributionGrapheAlea/DegreeDistGrapheAlea.txt";
         try {
             String filepath = System.getProperty("user.dir") + File.separator + filename;
             FileWriter fw = new FileWriter(filepath);
@@ -86,7 +86,7 @@ public class Main {
         // Distribution des degrés pour BAN
         int n= graphe3.getNodeCount();
         int [] ddBA = Toolkit.degreeDistribution(graphe3);
-        String filename = "Aleatoirement/DegreeDistGapheBarAlb.txt";
+        String filename = "DistributionBA/DegreeDistGrapheBarAlb.txt";
         try {
             String filepath = System.getProperty("user.dir") + File.separator + filename;
             FileWriter fw = new FileWriter(filepath);
@@ -111,7 +111,7 @@ public class Main {
         //graphe1.display();
 
         try {
-            fs.readAll("/home/c2i/Musique/tp-mri/fichier.txt");
+            fs.readAll("/home/c2i/tp-mri/fichier.txt");
         } catch (IOException e) {
             System.out.println(e);
 
@@ -142,7 +142,7 @@ public class Main {
 
         // création d'un fichier pour stocker les résultats de la distribution des degrés
         try {
-            PrintWriter fichier = new PrintWriter(new FileWriter("/home/c2i/Musique/tp-mri/Distribution/distributionDegre.txt"));
+            PrintWriter fichier = new PrintWriter(new FileWriter("/home/c2i/tp-mri/Distribution/distributionDegre.txt"));
             for (int i = 0; i < degreProba.length; i++) {
                 if (degreProba[i] != 0) {
                     fichier.write(String.format(Locale.US, "%6d%20.8f%n", i, (double) degreProba[i] / nbNoeud));

@@ -1,0 +1,72 @@
+
+
+*******************************************************************************
+Mon Jan  9 00:58:15 2023
+
+
+FIT:    data read from 'DegreeDistGrapheAlea.txt' using (log($1)):(log($2))
+        format = x:z
+        #datapoints = 21
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = lc - gamma * x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   lc            gamma        
+   0 5.9513737507e+02   0.00e+00  1.78e+00    1.000000e+00   1.000000e+00
+   3 1.4695287689e+02  -6.64e-02  1.78e-03    1.017620e+00   3.010086e+00
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 146.953
+rel. change during last iteration : -6.6428e-07
+
+degrees of freedom    (FIT_NDF)                        : 19
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.78107
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.73436
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+lc              = 1.01762          +/- 1.749        (171.9%)
+gamma           = 3.01009          +/- 0.7582       (25.19%)
+
+correlation matrix of the fit parameters:
+                lc     gamma  
+lc              1.000 
+gamma           0.938  1.000 
+
+
+*******************************************************************************
+Mon Jan  9 00:58:50 2023
+
+
+FIT:    data read from 'DegreeDistGrapheAlea.txt' using (log($1)):(log($2))
+        format = x:z
+        #datapoints = 21
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = lc - gamma * x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   lc            gamma        
+   0 5.9513737507e+02   0.00e+00  1.78e+00    1.000000e+00   1.000000e+00
+   3 1.4695287689e+02  -6.64e-02  1.78e-03    1.017620e+00   3.010086e+00
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 146.953
+rel. change during last iteration : -6.6428e-07
+
+degrees of freedom    (FIT_NDF)                        : 19
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.78107
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.73436
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+lc              = 1.01762          +/- 1.749        (171.9%)
+gamma           = 3.01009          +/- 0.7582       (25.19%)
+
+correlation matrix of the fit parameters:
+                lc     gamma  
+lc              1.000 
+gamma           0.938  1.000 

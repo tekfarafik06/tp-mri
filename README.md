@@ -171,4 +171,5 @@ Nous avons obtenu ces résultats, qui montrent que le seuil épidémique d'un r�
 
 # Simulation de la propagation du virus jour par jour pendant trois mois avec trois scénarios différent : 
 
-## 1 - Scénarios 1
+## 1 - Scénarios 01
+

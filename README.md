@@ -140,3 +140,35 @@ l'attachement préférentiel (plus un noeud est connecté, plus il est susceptib
 ***
 
 # Introduction 
+
+La propagation dans un réseau est l'étude de la manière dont une information, une influence ou une maladie se propage à travers les différents noeuds d'un réseau. 
+Il existe différents modèles pour étudier la propagation dans les réseaux, utilisés pour étudier les dynamiques d'épidémies, les phénomènes de rumeur, 
+les tendances de l'opinion, les phénomènes de diffusion de l'innovation, les comportements de consommation, etc. 
+Ces modèles peuvent être utilisés pour étudier différents aspects de la propagation dans les réseaux, comme la vitesse de propagation, la taille de l'épidémie, 
+les noeuds les plus vulnérables, les stratégies de contrôle de la propagation, etc.
+***
+Dans ce Tp Nous utilisons les mêmes consignes que le TP précédent ainsi que les données vu que la problèmatique est assez proche d'où le même dépôt git.
+Les collaborateurs scientifiques communiquent souvent par mail. Malheureusement pour eux, les pièces jointes de ces mails contiennent parfois des virus informatiques. On va étudier la propagation d'un virus avec les hypothèses suivantes :
+- Un individu envoie en moyenne un mail par semaine à chacun de ses collaborateurs.
+- Un individu met à jour son anti-virus en moyenne deux fois par mois. Cela nettoie son système mais ne le protège pas de nouvelles infections car le virus mute.
+- L'épidémie commence avec un individu infecté (patient zéro).
+## 1 - Le taux de propagation du virus :
+Le taux de propagation d'un virus est une mesure de la rapidité avec laquelle le virus se propage à travers un groupe d'individus. Il est calculé en divisant 
+la probabilité de transmission du virus par unité de temps par la probabilité de guérison des individus infectés.</br>
+Dans ce cas particulier, on suppose que les collaborateurs s'envoient en moyenne un mail par semaine, ce qui donne une probabilité de transmission de 1/7.</br> 
+On suppose également qu'un individu met à jour son antivirus en moyenne 2 fois par mois, ce qui donne une probabilité de guérison de 1/14. </br>
+En utilisant ces informations, le taux de propagation du virus est calculé comme étant 2.
+
+## 2 - Le seuil épidémique du réseau :
+Il est crucial de comprendre comment une épidémie se propage afin de prévoir jusqu'où elle peut se propager. C'est pourquoi le seuil épidémique est important, il permet de déterminer si une épidémie peut s'emballer ou non. Pour cela, il est nécessaire de calculer le seuil épidémique pour le réseau en question.</br> 
+On peut le calculer en utilisant la formule `Sλ = <k> / <k²>`, où `<k>` est le degré moyen du réseau et `<k²>` est la dispersion des degrés.</br> 
+Si le taux de propagation `λ` est supérieur au seuil épidémique `Sλ`, l'épidémie se poursuit, sinon elle s'abstient.
+
+## 3 - comparaison avec le seuil théorique d'un réseau aléatoire du même degré moyen :
+Nous avons obtenu ces résultats, qui montrent que le seuil épidémique d'un réseau aléatoire au même degré moyen est d'environ `0.13119762993051035`, ce qui est plus élevé que celui du réseau DBLP. Cette différence est due à la divergence du degré de clustering.
+
+![SeuilEpidemique](Images/PR.png)
+
+# Simulation de la propagation du virus jour par jour pendant trois mois avec trois scénarios différent : 
+
+## 1 - Scénarios 1

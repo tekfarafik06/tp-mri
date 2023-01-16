@@ -133,4 +133,10 @@ D'après les résultats on voit que le graphe préférentiel à plus de liens, e
 De plus le graphe préférentiel intègre deux concepts généraux importants : la croissance(le nombre de noeuds dans le réseau augmente avec le temps) et
 l'attachement préférentiel (plus un noeud est connecté, plus il est susceptible de recevoir de nouveaux liens). Et ces deux concepts existent dans les réseaux réels.
 
+***
 
+# TP Propagation dans des réseaux
+
+***
+
+# Introduction 

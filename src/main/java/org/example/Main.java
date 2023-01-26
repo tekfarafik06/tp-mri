@@ -47,6 +47,7 @@ public class Main {
         int[] dd = Toolkit.degreeDistribution(graphe2);
         //Stocker les données dans un fichier.txt
         String filename = "DistributionGrapheAlea/DegreeDistGrapheAlea.txt";
+        //graphe2.display();
         try {
             String filepath = System.getProperty("user.dir") + File.separator + filename;
             FileWriter fw = new FileWriter(filepath);
@@ -59,7 +60,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //graphe2.display();
         return graphe2;
     }
     // 6-2 Création d'un réseau avec la méthode d'attachement préférentiel (Barabasi-Albert) ayant la même taille que le réseau DBLP
@@ -111,7 +111,7 @@ public class Main {
         //graphe1.display();
 
         try {
-            fs.readAll("/home/c2i/tp-mri/fichier.txt");
+            fs.readAll("fichier.txt");
         } catch (IOException e) {
             System.out.println(e);
 
@@ -142,7 +142,7 @@ public class Main {
 
         // création d'un fichier pour stocker les résultats de la distribution des degrés
         try {
-            PrintWriter fichier = new PrintWriter(new FileWriter("/home/c2i/tp-mri/Distribution/distributionDegre.txt"));
+            PrintWriter fichier = new PrintWriter(new FileWriter("Distribution/distributionDegre.txt"));
             for (int i = 0; i < degreProba.length; i++) {
                 if (degreProba[i] != 0) {
                     fichier.write(String.format(Locale.US, "%6d%20.8f%n", i, (double) degreProba[i] / nbNoeud));

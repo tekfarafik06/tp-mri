@@ -168,8 +168,25 @@ Si le taux de propagation `λ` est supérieur au seuil épidémique `Sλ`, l'ép
 Nous avons obtenu ces résultats, qui montrent que le seuil épidémique d'un réseau aléatoire au même degré moyen est d'environ `0.13119762993051035`, ce qui est plus élevé que celui du réseau DBLP. Cette différence est due à la divergence du degré de clustering.
 
 ![SeuilEpidemique](Images/PR.png)
-
+***
 # Simulation de la propagation du virus jour par jour pendant trois mois avec trois scénarios différent : 
 
 ## 1 - Scénarios 01
+La Simulation sur la propagation du virus jour par jour pendant trois mois avec le premier scénario lorsqu'on ne fait rien pour empêcher l'épidémie.
+pour ce faire La méthode "simulateScenario1" simule la propagation d'un virus pendant 3 mois (90 jours) en utilisant un graphe pour représenter les relations entre les individus.
+Elle prend en entrée un graphe et renvoie un résultat sous forme de chaîne de caractères. 
+Elle définit un patient zéro au hasard, qui est le premier infecté, et ajoute l'attribut "infecté" à ce noeud. 
+Elle boucle ensuite sur le nombre de jours de la simulation et pour chaque jour : pour chaque noeud infecté, 
+elle calcule la probabilité de transmettre le virus à ses voisins (1/7) et si cette probabilité est vérifiée, 
+elle ajoute l'attribut "infecté" à ses voisins et incrémente le compteur de personnes infectées.
+Elle vérifie également pour chaque noeud s'il guérit (1/14) et si c'est le cas, elle retire l'attribut "infecté" et décrémente le compteur de personnes infectées. 
+Elle affiche le nombre de personnes infectées pour chaque jour et renvoie le résultat sous forme de chaîne de caractères.
+Et puis à l'aide de la méthode saveData j'ai pu enregistré les données obtenus et les stocker dans un fichier [Scenario1](TpPropagation/Scenario1.dat).</br>
+Ces résultats sont tracés via Gnuplot grâce à ce [script](TpPropagation/scenario1.gnuplot) . </br>
+
+Ce qui nous mène au graphe suivant
+
+![Scénario 01 ](TpPropagation/SimulationScénario1.png)
+
+
 

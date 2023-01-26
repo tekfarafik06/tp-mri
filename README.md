@@ -171,7 +171,7 @@ Nous avons obtenu ces résultats, qui montrent que le seuil épidémique d'un r�
 ***
 # Simulation de la propagation du virus jour par jour pendant trois mois avec trois scénarios différent : 
 
-## 1 - Scénarios 01
+## 1 - Scénario 01
 La Simulation sur la propagation du virus jour par jour pendant trois mois avec le premier scénario lorsqu'on ne fait rien pour empêcher l'épidémie.
 pour ce faire La méthode "simulateScenario1" simule la propagation d'un virus pendant 3 mois (90 jours) en utilisant un graphe pour représenter les relations entre les individus.
 Elle prend en entrée un graphe et renvoie un résultat sous forme de chaîne de caractères. 
@@ -188,5 +188,20 @@ Ce qui nous mène au graphe suivant
 
 ![Scénario 01 ](TpPropagation/SimulationScénario1.png)
 
+***
+## 2 - Scénario 02
+La méthode "simulateScenario2" simule la propagation d'un virus pendant 90 jours (3 mois) dans un graphe de collaborateurs en utilisant un scénario de simulation
+où 50% des collaborateurs sont immunisés (ils ont mis à jour en permanence leur anti-virus). 
+Elle commence par sélectionner aléatoirement la moitié des employés pour les immuniser,
+puis choisit un patient zéro (le premier infecté) au hasard parmi les collaborateurs non immunisés.
+Ensuite, pour chaque jour de la simulation, elle parcourt tous les collaborateurs infectés et calcule 
+la probabilité de 1/7 de propager le virus à leurs voisins, en excluant les collaborateurs immunisés. 
+Elle utilise également une probabilité de 1/14 pour vérifier si les collaborateurs infectés guérissent ou non.
+Enfin, elle renvoie le résultat sous forme de chaîne de caractères.</br>
+Et puis à l'aide de la méthode saveData j'ai pu enregistré les données obtenus et les stocker dans un fichier [Scenario2](TpPropagation/Scenario2.dat).</br>
+Ces résultats sont tracés via Gnuplot grâce à ce [script](TpPropagation/scenario2.gnuplot) . </br>
 
+Ce qui nous mène au graphe suivant
+
+![Scénario 02 ](TpPropagation/SimulationScénario2.png)
 

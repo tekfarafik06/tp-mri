@@ -207,7 +207,66 @@ public class propagationReseau {
 
         return res ;
     }
+    public static String simulateScenario3(Graph graphe) throws IOException{
+        Random numRandom = new Random();
+        List<Node> immunises = new ArrayList();
+        graphe.forEach(n -> { n.setAttribute("state","sain"); }); // Chaque noeud non malade
 
+        String res = "";
+        int jours = 90; // Trois mois
+
+        List<Node> moitieIndiv = Toolkit.randomNodeSet(graphe,graphe.getNodeCount()/2);//  50 % des individus (pour cas 3)
+
+
+        for(Node node : moitieIndiv) {
+            // Un des contacts pour les 50 %
+            Node nodeImmunise = node.getEdge(numRandom.nextInt(node.getDegree())).getOpposite(node);
+            nodeImmunise.setAttribute("state","immuniser");
+            immunises.add(nodeImmunise);
+        }
+
+
+        // Liste pour stocker les individus infectés qui propagent le virus
+        ArrayList<Node> infectes = new ArrayList<>();
+        ArrayList<Node> temp = new ArrayList<>();
+
+        Consumer<Node> setMalade = (n) -> { n.setAttribute("state", "infecté "); };
+        Consumer<Node> setGueri = (n) -> { n.setAttribute("state", "sain"); };
+
+        // Patient 0 infecté
+        int k = numRandom.nextInt(immunises.size());
+        Node premiereInfecte = immunises.get(k);
+        premiereInfecte.setAttribute("state", "infecté ");
+        infectes.add(premiereInfecte);
+
+        for(int i=0;i<jours;i++) {
+            for (Node node : infectes) {
+                if (!temp.contains(node)) temp.add(node);
+                if (numRandom.nextInt(7) + 1 == 1) {
+                    for (Edge e : node) {
+                        Node voisin = e.getOpposite(node);
+                        if (!temp.contains(voisin) && !moitieIndiv.contains(voisin)) {
+                            voisin.setAttribute("state", "infecté");
+                            temp.add(voisin);
+                        }
+                    }
+                }
+            }
+            //vider le tableau infected,prepare les individus infectés pour lendemain
+            infectes.clear();
+            //mettre à jour
+            for (Node node1 : temp) {
+                if (numRandom.nextInt(14) + 1 == 1)
+                    node1.setAttribute("state", "sain");
+                else infectes.add(node1);
+            }
+            System.out.println("j " + i+ " " +infectes.size()+"\n");
+
+            res += (i + 1) + " " + infectes.size() + "\n";
+            //res += "Il y a " + (g.getNodeCount() - immunises.size() - infectes.size()) + " personnes guéries, " + infectes.size() + " personnes malades et " + immunises.size() + " personnes immunisées.\n";
+        }
+        return res;
+    }
 
 
     public static void main(String[] args) throws IOException{
@@ -229,7 +288,10 @@ public class propagationReseau {
         System.out.println("\n******* Simulation du scénarios 01 ********") ;
         //saveData("Scenario01" ,   simulateScenario1(graphe));
         System.out.println("\n******* Simulation du scénarios 02 ********") ;
-        saveData("Scenario02" ,   simulateScenario2(graphe));
+        //saveData("Scenario02" ,   simulateScenario2(graphe));
+        System.out.println("\n******* Simulation du scénarios 03 ********") ;
+        saveData("Scenario3" , simulateScenario3(graphe));
+
 
     }
 }

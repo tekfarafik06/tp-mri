@@ -3,25 +3,36 @@ import org.graphstream.algorithm.Toolkit;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceEdge;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.Edge;
 
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Consumer;
 
 import static org.graphstream.algorithm.Toolkit.averageDegree;
 
 public class propagationReseau {
     public static Graph graphe;
+
     //constructure de la classe PropagationReseau
     public propagationReseau(Graph graphe) throws IOException {
         this.graphe = graphe;
     }
+
+    public Graph getG() {
+        return this.graphe;
+    }
+
     //Lire les données du réseau DBLP en utilisant GraphStream
     public static Graph readFile(String path, String Graph) {
         // Création d'un nouveau graphe avec le nom spécifié
@@ -41,7 +52,8 @@ public class propagationReseau {
         // Retourner le graphe rempli avec les données chargées
         return graphe;
     }
-    public static double calculerDistributionDegres(){
+
+    public static double calculerDistributionDegres() {
         double k = 0.0;
         int i;
         // Récupération des degrés des noeuds dans un tableau
@@ -54,6 +66,7 @@ public class propagationReseau {
         }
         return k;
     }
+
     public static Graph ReseauAleatoire(int NombreNoeuds, int degreeMoyen) {
         System.setProperty("org.graphstream.ui", "user.dir");
         Graph grapheAlea = new SingleGraph("Random");
@@ -67,71 +80,75 @@ public class propagationReseau {
         return grapheAlea;
 
     }
+
     public static Graph BarabasiAlbert(int NombreNoueds, int degreMoyen) {
         Graph grapheBA = new SingleGraph("BarAlb");
         Generator gen = new BarabasiAlbertGenerator(degreMoyen);
 
         gen.addSink(grapheBA);
         gen.begin();
-        for (int i=0;i < NombreNoueds;i++ )
+        for (int i = 0; i < NombreNoueds; i++)
             gen.nextEvents();
         gen.end();
         return grapheBA;
     }
-    //Méthode pour calculer les individus contaminés
-    // en utilisant la probabilité de contaminer un collaborateur qui est 1/7
-    public static int patientPositif(Node n, int nbrPositif) {
-        Random r = new Random();
-        //Si la probabilité est égale à 1 sur 7, et que l'individu n'est pas immunisé
-        if (r.nextInt(7) + 1 == 1 && !n.hasAttribute("immunise")) {
-            //Si l'individu n'est pas déjà infecté
-            if (!n.hasAttribute("infected")) {
-                //on lui attribue l'attribut infecté
-                n.setAttribute("infected", true);
-                //On augmente le compteur de personne infecté
-                nbrPositif++;
-            }
-        }
-        return nbrPositif;
-    }
 
-    //Méthode pour calculer les individus guéris
-    // en utilisant la probabilité de mettre à jour l'anti virus qui est 1/14
-    public static int patientNegatif(Node n, int nbrPositif) {
-        Random r = new Random();
-        //Si la probabilité est égale à 1 sur 14
-        if (r.nextInt(14) + 1 == 1) {
-            //Si l'individu est infecté
-            if (n.hasAttribute("infected")) {
-                //On retire l'attribut infecté
-                n.removeAttribute("infected");
-                //On décrémente le compteur de personne infecté
-                nbrPositif--;
-            }
+    public static void saveData(String filename , String liste){
+        try {
+            FileWriter file = new FileWriter("TpPropagation/"+filename+".dat");
+            file.write(liste);
+
+            file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return nbrPositif;
+
     }
-    public static void simulateScenario1(Graph graphe) {
+    public static String simulateScenario1(Graph graphe) throws IOException {
+        int jours = 90 ;// Trois mois
         // Sélectionnez un patient zéro pour commencer l'épidémie
         Node patientZero = graphe.getNode(0);
-        patientZero.setAttribute("infected", true);
+        patientZero.setAttribute("infecté", true);
         int nbrPositif = 1;
-
-        // Boucle pour simuler 84 jours de propagation (12 semaines)
-        for (int day = 1; day <= 84; day++) {
-            // Parcourir tous les noeuds du réseau
+        String res = " ";
+        // Boucle pour simuler 90 jours de propagation
+        for (int i = 0; i < jours; i++) {
+        // Parcourir tous les noeuds du réseau
             for (Node node : graphe) {
-                // Si un noeud est infecté, calculer la probabilité de transmettre le virus à ses voisins
-                if (node.hasAttribute("infected")) {
+        // Si un noeud est infecté, calculer la probabilité de transmettre le virus à ses voisins
+                if (node.hasAttribute("infecté")) {
                     for (Edge e : node) {
-                        nbrPositif = patientPositif(e.getOpposite(node), nbrPositif);
+                        Random r = new Random();
+        //Si la probabilité est égale à 1 sur 7, et que l'individu n'est pas immunisé
+                        if (r.nextInt(7) + 1 == 1 && !e.getOpposite(node).hasAttribute("immunise")) {
+        //Si l'individu n'est pas déjà infecté
+                            if (!e.getOpposite(node).hasAttribute("infecté")) {
+        //on lui attribue l'attribut infecté
+                                e.getOpposite(node).setAttribute("infecté", true);
+        //On augmente le compteur de personne infecté
+                                nbrPositif++;
+                            }
                         }
                     }
-                nbrPositif = patientNegatif(node, nbrPositif);
                 }
-            System.out.println("Jour " + day + ": " + nbrPositif + " personnes infectées");
+                Random r = new Random();
+        //Si la probabilité est égale à 1 sur 14
+                if (r.nextInt(14) + 1 == 1) {
+        //Si l'individu est infecté
+                    if (node.hasAttribute("infecté")) {
+        //On retire l'attribut infecté
+                        node.removeAttribute("infecté");
+        //On décrémente le compteur de personne infecté
+                        nbrPositif--;
+                    }
+                }
+            }
+            System.out.println("jour " + i + " " +nbrPositif+"\n");
+            res += (i+1)+" "+nbrPositif+"\n";
         }
+        return res;
     }
+
     public static void main(String[] args) throws IOException{
         //Création d'un objet pour la propagation du réseau en utilisant le graphe créé à partir du fichier
         Graph graphe = readFile("./fichier.txt", "graphe1");
@@ -149,9 +166,7 @@ public class propagationReseau {
         System.out.println("Le seuil épidémique du réseau DBLP est : " + degreMoyen +" / "+ grapheP.calculerDistributionDegres() + " = " +  GrapheDBLP);
         System.out.println("Le seuil épidémique du réseau Aléatoire est => " + 1 +" / "+  (degreMoyen+1) + " = " +  GrapheAlea);
         System.out.println("\n******* Simulation du scénarios 01 ********") ;
-        simulateScenario1(graphe);
-
-
+        saveData("Scenario01" ,   simulateScenario1(graphe));
 
 
     }

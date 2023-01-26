@@ -148,6 +148,67 @@ public class propagationReseau {
         }
         return res;
     }
+    public static String simulateScenario2(Graph graphe) throws IOException {
+        int nbJours = 90 ;// Trois mois
+        String res = " ";
+        Random rand = new Random();
+
+        //Toute la population est en bonne santé
+        for(Node node : graphe )
+            node.setAttribute("state", "sain");
+
+        List<Node> lst_immunise = Toolkit.randomNodeSet(graphe, graphe.getNodeCount()/2);
+        for(Node node:lst_immunise) node.setAttribute("state", "immuniser");
+
+        //on retire les noeuds immunisés
+        for(Node node:lst_immunise){
+            graphe.removeNode(node);
+        }
+
+        // definition d'un patient zéro
+        int k = rand.nextInt(graphe.getNodeCount());
+        Node patientZero = graphe.getNode(k);
+        patientZero.setAttribute("state", "infecté");
+//pour stocker les individus infectés qui s'occupe de propager le virus chaque jour
+        ArrayList<Node> infecte = new ArrayList<>();
+        infecte.add(patientZero);
+        //un tableau pour stocker les individus de l'etat "sain" en l'etat "infecte" ou de l'etat "infecte" en l'etat "sain"
+        ArrayList<Node> temp = new ArrayList<>();
+        for(int i=0;i<nbJours;i++){
+            //parcourir tous les individus infectes
+            for(Node node:infecte){
+                if(!temp.contains(node)) temp.add(node);
+                //la probabilité de recevoir le mail pour chaque voisin de l'individu infecté est 1/7
+                if(rand.nextInt(7)+1==1) {
+                    for(Edge e:node){
+                        //obtenir tous les voisins de noeud node
+                        Node voisin = e.getOpposite(node);
+                        if(!temp.contains(voisin) && !lst_immunise.contains(voisin)){
+                            voisin.setAttribute("state", "infecté");
+                            temp.add(voisin);
+                        }
+                    }
+                }
+            }
+
+            //vider le tableau infected,prepare les individus infectés pour lendemain
+            infecte.clear();
+            //mettre à jour
+            for(Node node:temp){
+                if(rand.nextInt(14)+1==1)
+                    node.setAttribute("state", "sain");
+                else infecte.add(node);
+            }
+
+            System.out.println("jour " + i + " " + infecte.size()+"\n");
+
+            res += (i+1)+" "+infecte.size()+"\n";
+        }
+
+        return res ;
+    }
+
+
 
     public static void main(String[] args) throws IOException{
         //Création d'un objet pour la propagation du réseau en utilisant le graphe créé à partir du fichier
@@ -166,8 +227,9 @@ public class propagationReseau {
         System.out.println("Le seuil épidémique du réseau DBLP est : " + degreMoyen +" / "+ grapheP.calculerDistributionDegres() + " = " +  GrapheDBLP);
         System.out.println("Le seuil épidémique du réseau Aléatoire est => " + 1 +" / "+  (degreMoyen+1) + " = " +  GrapheAlea);
         System.out.println("\n******* Simulation du scénarios 01 ********") ;
-        saveData("Scenario01" ,   simulateScenario1(graphe));
-
+        //saveData("Scenario01" ,   simulateScenario1(graphe));
+        System.out.println("\n******* Simulation du scénarios 02 ********") ;
+        saveData("Scenario02" ,   simulateScenario2(graphe));
 
     }
 }

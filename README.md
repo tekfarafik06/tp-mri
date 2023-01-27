@@ -188,6 +188,7 @@ Ce qui nous mène au graphe suivant
 
 ![Scénario 01 ](TpPropagation/SimulationScénario1.png)
 
+On remarque qu'au cours des 30 premiers jours, l'augmentation de la propagation du virus est très importante, atteignant environ 280 000 cas d'infections, puis la courbe devient stable jusqu'à la fin de la simulation.
 ***
 ## 2 - Scénario 02
 La méthode "simulateScenario2" simule la propagation d'un virus pendant 90 jours (3 mois) dans un graphe de collaborateurs en utilisant un scénario de simulation
@@ -204,4 +205,29 @@ Ces résultats sont tracés via Gnuplot grâce à ce [script](TpPropagation/scen
 Ce qui nous mène au graphe suivant
 
 ![Scénario 02 ](TpPropagation/SimulationScénario2.png)
+
+On constate que la propagation du virus débute le 15ème jour, atteignant environ 100000 cas d'infection, avant de se stabiliser jusqu'à la fin de la simulation.
+
+***
+## 3 - Scénario 03
+La méthode "simulateScenario3" simule la propagation d'un virus pendant 90 jours (3 mois) dans un graphe de collaborateurs en utilisant un scénario de simulation
+où 50% des individus ont réussi à convaincre un de leurs contacts de mettre à jour en permanence son anti-virus (immunisation sélective). 
+Le graphe est initialisé en mettant tous les noeuds dans l'état "sain" (pas infecté).
+Ensuite, un des contacts de chaque individu dans le groupe de 50% est sélectionné aléatoirement et est mis à jour en permanence, devenant "immunisé". 
+Ensuite, un individu infecté (patient 0) est sélectionné aléatoirement parmi les individus immunisés. 
+Chaque jour, les individus infectés propagent le virus à leurs voisins avec une probabilité de 1/7. 
+Les individus infectés ont également une probabilité de 1/14 de guérir chaque jour.
+Le nombre d'individus infectés est enregistré chaque jour et est retourné en résultat final.</br>
+Et puis à l'aide de la méthode saveData j'ai pu enregistré les données obtenus et les stocker dans un fichier [Scenario3](TpPropagation/Scenario3.dat).</br>
+Ces résultats sont tracés via Gnuplot grâce à ce [script](TpPropagation/scenario3.gnuplot) . </br>
+
+Ce qui nous mène au graphe suivant
+
+![Scénario 03 ](TpPropagation/SimulationScénario3.png)
+
+On constate que le nombre de personnes infectées est très faible par rapport aux autres scénarios pendant la durée de la simulation.</br>
+***
+voici un graphe qui compare les trois scénarios au meme temps
+
+![comparaison](TpPropagation/ComparaisonDesTroisScen.png)
 

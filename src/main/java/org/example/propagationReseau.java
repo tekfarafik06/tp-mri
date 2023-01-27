@@ -319,7 +319,7 @@ public class propagationReseau {
         System.out.println("\n******* Simulation du scénarios 02 ********") ;
         //saveData("Scenario2" ,   simulateScenario2(graphe));
         System.out.println("\n******* Simulation du scénarios 03 ********") ;
-        //saveData("Scenario3t" , simulateScenario3(graphe));
+        //saveData("Scenario3" , simulateScenario3(graphe));
         System.out.println("\n******* Simulation de l'épidémie avec les mêmes hypothèses et les mêmes scénarios dans un réseau aléatoire ********") ;
         System.out.println("\n******* Simulation du scénarios 01 Graphe Aléatoire ********") ;
         //saveData("Scenario1_GA" ,   simulateScenario1(ReseauAleatoire()));
@@ -330,9 +330,9 @@ public class propagationReseau {
         System.out.println("\n******* Simulation de l'épidémie avec les mêmes hypothèses et les mêmes scénarios dans un réseau généré avec la méthode d'attachement préférentiel ********") ;
         //Graph grapheBA= BarabasiAlbert(317080,6);
         System.out.println("\n******* Simulation du scénarios 01 avec la méthode d'attachement préférentiel ********") ;
-        saveData("Scenario1_BA" ,   simulateScenario1(BarabasiAlbert()));
+        //saveData("Scenario1_BA" ,   simulateScenario1(BarabasiAlbert()));
         System.out.println("\n******* Simulation du scénarios 02 avec la méthode d'attachement préférentiel ********") ;
-        saveData("Scenario2_BA" ,   simulateScenario2(BarabasiAlbert()));
+        //saveData("Scenario2_BA" ,   simulateScenario2(BarabasiAlbert()));
         System.out.println("\n******* Simulation du scénarios 03 avec la méthode d'attachement préférentiel ********") ;
         saveData("Scenario3_BA" ,   simulateScenario3(BarabasiAlbert()));
     }

@@ -227,7 +227,20 @@ Ce qui nous mène au graphe suivant
 
 On constate que le nombre de personnes infectées est très faible par rapport aux autres scénarios pendant la durée de la simulation.</br>
 ***
-voici un graphe qui compare les trois scénarios au meme temps
+Voici un graphe qui compare les trois scénarios au meme temps
 
 ![comparaison](TpPropagation/ComparaisonDesTroisScen.png)
 
+## 4 - Calculer le degré moyen des groupes 0 et 1  
+D'après le calcul voici le résultat obtenu 
+
+![Le degré moyen des groupes 0 et 1 ](Images/leDegre.png)
+
+La différence des degrés moyens entre les deux groupes soit due au nombre élevé de voisins dans le groupe 1, ce qui augmente la probabilité d'être immunisé. 
+
+## 5 - Calculer le seuil épidémique du réseau modifié pour chacune des deux stratégies d'immunisation
+
+![le seuil épidémique du réseau modifié de la stratégie 2](Images/stra2.png)
+![le seuil épidémique du réseau modifié de la stratégie 3](Images/stra3.png)
+
+Cela signifie que dans le scénario 2, le nombre de personnes nécessaires pour maintenir l'épidémie est deux fois plus élevé que le réseau initial. Dans le scénario 3, le nombre de personnes nécessaires pour maintenir l'épidémie est presque le même que dans le réseau initial, ce qui montre que l'immunisation sélective n'a pas eu un impact significatif sur le seuil épidémique.

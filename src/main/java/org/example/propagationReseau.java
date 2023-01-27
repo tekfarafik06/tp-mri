@@ -104,6 +104,7 @@ public class propagationReseau {
         }
 
     }
+
     public static String simulateScenario1(Graph graphe) throws IOException {
         int jours = 90 ;// Trois mois
         // Sélectionnez un patient zéro pour commencer l'épidémie
@@ -148,6 +149,16 @@ public class propagationReseau {
         }
         return res;
     }
+    public static double CalculSeuil(Graph graphe, int nbr) {
+        int[] dd = Toolkit.degreeDistribution(graphe);
+        double degreMoyen = Toolkit.averageDegree(graphe);
+        double degreCarreMoyen = 0;
+        for (int i = 0; i < dd.length; i++) {
+            if (dd[i] != 0)
+                degreCarreMoyen += Math.pow(i, 2) * ((double) dd[i] / nbr);
+        }
+        return degreMoyen / degreCarreMoyen;
+    }
     public static String simulateScenario2(Graph graphe) throws IOException {
         int nbJours = 90 ;// Trois mois
         String res = " ";
@@ -169,11 +180,12 @@ public class propagationReseau {
         int k = rand.nextInt(graphe.getNodeCount());
         Node patientZero = graphe.getNode(k);
         patientZero.setAttribute("state", "infecté");
-//pour stocker les individus infectés qui s'occupe de propager le virus chaque jour
+        //pour stocker les individus infectés qui s'occupe de propager le virus chaque jour
         ArrayList<Node> infecte = new ArrayList<>();
         infecte.add(patientZero);
         //un tableau pour stocker les individus de l'etat "sain" en l'etat "infecte" ou de l'etat "infecte" en l'etat "sain"
         ArrayList<Node> temp = new ArrayList<>();
+        System.out.println("Le seuil épidémique du réseau de la stratégie 2 : " + CalculSeuil(graphe,graphe.getNodeCount())+"\n");
         for(int i=0;i<nbJours;i++){
             //parcourir tous les individus infectes
             for(Node node:infecte){
@@ -216,16 +228,20 @@ public class propagationReseau {
         int jours = 90; // Trois mois
 
         List<Node> moitieIndiv = Toolkit.randomNodeSet(graphe,graphe.getNodeCount()/2);//  50 % des individus (pour cas 3)
-
-
+        double someDegreGroupe0 = 0;
+        double someDegreGroupe1 = 0;
         for(Node node : moitieIndiv) {
             // Un des contacts pour les 50 %
             Node nodeImmunise = node.getEdge(numRandom.nextInt(node.getDegree())).getOpposite(node);
             nodeImmunise.setAttribute("state","immuniser");
             immunises.add(nodeImmunise);
+            someDegreGroupe0 += node.getDegree();
+            someDegreGroupe1 += nodeImmunise.getDegree();
         }
+        System.out.println("Le degré moyen des groupes 0 est :"+someDegreGroupe0/moitieIndiv.size()+"\n");
+        System.out.println("Le degré moyen des groupes 1 est :"+someDegreGroupe1/moitieIndiv.size()+"\n");
 
-
+        System.out.println("Le seuil épidémique du réseau de la stratégie 3 : " + CalculSeuil(graphe,graphe.getNodeCount())+"\n");
         // Liste pour stocker les individus infectés qui propagent le virus
         ArrayList<Node> infectes = new ArrayList<>();
         ArrayList<Node> temp = new ArrayList<>();
@@ -260,7 +276,7 @@ public class propagationReseau {
                     node1.setAttribute("state", "sain");
                 else infectes.add(node1);
             }
-            System.out.println("j " + i+ " " +infectes.size()+"\n");
+            //System.out.println("jour " + i+ " " +infectes.size()+"\n");
 
             res += (i + 1) + " " + infectes.size() + "\n";
             //res += "Il y a " + (g.getNodeCount() - immunises.size() - infectes.size()) + " personnes guéries, " + infectes.size() + " personnes malades et " + immunises.size() + " personnes immunisées.\n";
@@ -286,12 +302,10 @@ public class propagationReseau {
         System.out.println("Le seuil épidémique du réseau DBLP est : " + degreMoyen +" / "+ grapheP.calculerDistributionDegres() + " = " +  GrapheDBLP);
         System.out.println("Le seuil épidémique du réseau Aléatoire est => " + 1 +" / "+  (degreMoyen+1) + " = " +  GrapheAlea);
         System.out.println("\n******* Simulation du scénarios 01 ********") ;
-        //saveData("Scenario01" ,   simulateScenario1(graphe));
+        saveData("Scenario1" ,   simulateScenario1(graphe));
         System.out.println("\n******* Simulation du scénarios 02 ********") ;
-        //saveData("Scenario02" ,   simulateScenario2(graphe));
+        //saveData("Scenario2" ,   simulateScenario2(graphe));
         System.out.println("\n******* Simulation du scénarios 03 ********") ;
-        saveData("Scenario3" , simulateScenario3(graphe));
-
-
+        //saveData("Scenario3t" , simulateScenario3(graphe));
     }
 }

@@ -4,7 +4,7 @@ set output "SimulationScénario1.png"
 
 set  title 'Simulation Scénario 1  '
 set yrange [0:300000]
-set xrange [1:100]
+set xrange [0:100]
 
 set ylabel 'Nombre de patients infectés '
 set xlabel 'jours'

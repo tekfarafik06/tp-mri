@@ -67,30 +67,43 @@ public class propagationReseau {
         return k;
     }
 
-    public static Graph ReseauAleatoire(int NombreNoeuds, int degreeMoyen) {
-        System.setProperty("org.graphstream.ui", "user.dir");
-        Graph grapheAlea = new SingleGraph("Random");
-        Generator gen = new RandomGenerator(degreeMoyen, false, false);
-        gen.addSink(grapheAlea);
+    public static Graph ReseauAleatoire() {
+        Graph graphe2 = new SingleGraph("Random");
+        Generator gen = new RandomGenerator(6);
+        gen.addSink(graphe2);
         gen.begin();
-        for (int i = 0; i < NombreNoeuds; i++)
+        for (int i = 0; i < 317080; i++) {
             gen.nextEvents();
+            System.out.println(i);
+        }
         gen.end();
-
-        return grapheAlea;
-
+        return graphe2;
     }
 
-    public static Graph BarabasiAlbert(int NombreNoueds, int degreMoyen) {
+    public static Graph BarabasiAlbert() {
         Graph grapheBA = new SingleGraph("BarAlb");
-        Generator gen = new BarabasiAlbertGenerator(degreMoyen);
+        Generator gen = new BarabasiAlbertGenerator(6);
 
         gen.addSink(grapheBA);
         gen.begin();
-        for (int i = 0; i < NombreNoueds; i++)
+        for (int i = 0; i < 317080; i++) {
             gen.nextEvents();
+            System.out.println(i);
+        }
         gen.end();
         return grapheBA;
+
+
+        /*
+        Graph graph = new SingleGraph("BAN");
+        Generator gen = new BarabasiAlbertGenerator(6); // création d'un réseau dont chaque noeud à un degré entre 1 et 4
+
+        gen.addSink(graph);
+        gen.begin();
+        while (graph.getNodeCount() < 317080 && gen.nextEvents());
+        gen.end();
+        return graph;
+        */
     }
 
     public static void saveData(String filename , String liste){
@@ -219,9 +232,10 @@ public class propagationReseau {
 
         return res ;
     }
-    public static String simulateScenario3(Graph graphe) throws IOException{
+
+    public static String simulateScenario3(Graph graphe) {
         Random numRandom = new Random();
-        List<Node> immunises = new ArrayList();
+        ArrayList<Node> immunises = new ArrayList();
         graphe.forEach(n -> { n.setAttribute("state","sain"); }); // Chaque noeud non malade
 
         String res = "";
@@ -276,14 +290,13 @@ public class propagationReseau {
                     node1.setAttribute("state", "sain");
                 else infectes.add(node1);
             }
-            //System.out.println("jour " + i+ " " +infectes.size()+"\n");
+            System.out.println("jour " + i+ " " +infectes.size()+"\n");
 
             res += (i + 1) + " " + infectes.size() + "\n";
             //res += "Il y a " + (g.getNodeCount() - immunises.size() - infectes.size()) + " personnes guéries, " + infectes.size() + " personnes malades et " + immunises.size() + " personnes immunisées.\n";
         }
         return res;
     }
-
 
     public static void main(String[] args) throws IOException{
         //Création d'un objet pour la propagation du réseau en utilisant le graphe créé à partir du fichier
@@ -302,10 +315,25 @@ public class propagationReseau {
         System.out.println("Le seuil épidémique du réseau DBLP est : " + degreMoyen +" / "+ grapheP.calculerDistributionDegres() + " = " +  GrapheDBLP);
         System.out.println("Le seuil épidémique du réseau Aléatoire est => " + 1 +" / "+  (degreMoyen+1) + " = " +  GrapheAlea);
         System.out.println("\n******* Simulation du scénarios 01 ********") ;
-        saveData("Scenario1" ,   simulateScenario1(graphe));
+        //saveData("Scenario1" ,   simulateScenario1(graphe));
         System.out.println("\n******* Simulation du scénarios 02 ********") ;
         //saveData("Scenario2" ,   simulateScenario2(graphe));
         System.out.println("\n******* Simulation du scénarios 03 ********") ;
         //saveData("Scenario3t" , simulateScenario3(graphe));
+        System.out.println("\n******* Simulation de l'épidémie avec les mêmes hypothèses et les mêmes scénarios dans un réseau aléatoire ********") ;
+        System.out.println("\n******* Simulation du scénarios 01 Graphe Aléatoire ********") ;
+        //saveData("Scenario1_GA" ,   simulateScenario1(ReseauAleatoire()));
+        System.out.println("\n******* Simulation du scénarios 02 Graphe Aléatoire ********") ;
+        //saveData("Scenario2_GA" ,   simulateScenario2(ReseauAleatoire()));
+        System.out.println("\n******* Simulation du scénarios 03 Graphe Aléatoire ********") ;
+        //saveData("Scenario3_GA" ,   simulation3(ReseauAleatoire()));
+        System.out.println("\n******* Simulation de l'épidémie avec les mêmes hypothèses et les mêmes scénarios dans un réseau généré avec la méthode d'attachement préférentiel ********") ;
+        //Graph grapheBA= BarabasiAlbert(317080,6);
+        System.out.println("\n******* Simulation du scénarios 01 avec la méthode d'attachement préférentiel ********") ;
+        saveData("Scenario1_BA" ,   simulateScenario1(BarabasiAlbert()));
+        System.out.println("\n******* Simulation du scénarios 02 avec la méthode d'attachement préférentiel ********") ;
+        saveData("Scenario2_BA" ,   simulateScenario2(BarabasiAlbert()));
+        System.out.println("\n******* Simulation du scénarios 03 avec la méthode d'attachement préférentiel ********") ;
+        saveData("Scenario3_BA" ,   simulateScenario3(BarabasiAlbert()));
     }
 }

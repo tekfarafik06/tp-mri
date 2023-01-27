@@ -244,3 +244,20 @@ La différence des degrés moyens entre les deux groupes soit due au nombre éle
 ![le seuil épidémique du réseau modifié de la stratégie 3](Images/stra3.png)
 
 Cela signifie que dans le scénario 2, le nombre de personnes nécessaires pour maintenir l'épidémie est deux fois plus élevé que le réseau initial. Dans le scénario 3, le nombre de personnes nécessaires pour maintenir l'épidémie est presque le même que dans le réseau initial, ce qui montre que l'immunisation sélective n'a pas eu un impact significatif sur le seuil épidémique.
+
+***
+## 6 - Simulation et utilisation des mêmes scénarios dans un réseau aléatoire et un réseau généré avec la méthode d'attachement préférentiel de la même taille et le même degré moyen
+### 1 - Un réseau aléatoire 
+
+![Simulation des scénario avec un réseau aléatoire ](TpPropagation/ComparaisonDesTroisScen_GA.png)
+
+### 2 - Un réseau généré avec la méthode d'attachement préférentiel
+
+![Simulation des scénario avec un réseau généré avec la méthode d'attachement préférentiel ](TpPropagation/ComparaisonDesTroisScen_BA.png)
+
+### 3 - Comparaison 
+Les résultats observés dans les scénarios 1 et 2 et 3 soient liés à la nature des réseaux générés. Dans le scénario 1, la méthode d'attachement 
+préférentiel ait conduit à une plus grande densité de liens dans le réseau, 
+ce qui a permis une convergence plus rapide vers une valeur stable. 
+Dans les scénarios 2 et 3, il est possible que le réseau généré avec la méthode d'attachement préférentiel ait une structure plus homogène, ce qui a conduit à des courbes de stabilisation similaires.
+

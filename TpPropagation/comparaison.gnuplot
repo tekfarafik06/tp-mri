@@ -3,8 +3,8 @@ set encoding utf8
 set output "ComparaisonDesTroisScen.png"
 
 set  title 'Comparaison des 3 scénarios  '
-
-set xrang[0:84]
+set yrange [0:300000]
+set xrang[0:100]
 
 set ylabel 'Nombre de patients infectés'
 set xlabel 'jours'
